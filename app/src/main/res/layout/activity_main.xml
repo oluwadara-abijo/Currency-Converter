@@ -4,15 +4,123 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:paddingHorizontal="@dimen/margin_default"
+    android:paddingVertical="@dimen/margin_big"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/img_menu"
+        style="@style/IconsStyle"
+        android:contentDescription="@string/menu"
+        android:src="@drawable/ic_menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
+        style="@style/TextStyle"
+        android:text="@string/sign_up"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_currency_converter"
+        style="@style/TextStyle"
+        android:layout_marginTop="@dimen/margin_large"
+        android:text="@string/currency_calculator"
+        android:textColor="@color/colorBlueText"
+        android:textSize="@dimen/large_text_size"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_menu" />
+
+    <ImageView
+        android:id="@+id/img_dot"
+        style="@style/IconsStyle"
+        android:layout_marginStart="2dp"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:contentDescription="@string/menu"
+        android:src="@drawable/ic_dot"
+        app:layout_constraintBottom_toBottomOf="@id/tv_currency_converter"
+        app:layout_constraintStart_toEndOf="@id/tv_currency_converter" />
+
+    <EditText
+        android:id="@+id/edit_amt_from"
+        style="@style/EditTextStyle"
+        android:layout_marginTop="@dimen/margin_large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_currency_converter" />
+
+    <TextView
+        android:id="@+id/tv_amt_from"
+        style="@style/TextStyle"
+        android:layout_marginHorizontal="16dp"
+        android:textColor="@color/colorFaintGrey"
+        app:layout_constraintBottom_toBottomOf="@id/edit_amt_from"
+        app:layout_constraintEnd_toEndOf="@id/edit_amt_from"
+        app:layout_constraintTop_toTopOf="@id/edit_amt_from" />
+
+    <EditText
+        android:id="@+id/edit_amt_to"
+        style="@style/EditTextStyle"
+        android:layout_marginTop="@dimen/margin_default"
+        app:layout_constraintEnd_toEndOf="@id/edit_amt_from"
+        app:layout_constraintStart_toStartOf="@id/edit_amt_from"
+        app:layout_constraintTop_toBottomOf="@id/edit_amt_from" />
+
+    <TextView
+        android:id="@+id/tv_amt_to"
+        style="@style/TextStyle"
+        android:layout_marginHorizontal="16dp"
+        android:textColor="@color/colorFaintGrey"
+        app:layout_constraintBottom_toBottomOf="@id/edit_amt_to"
+        app:layout_constraintEnd_toEndOf="@id/edit_amt_to"
+        app:layout_constraintTop_toTopOf="@id/edit_amt_to" />
+
+    <Spinner
+        android:id="@+id/spinner_from"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="@dimen/margin_big"
+        android:background="@drawable/bg_spinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_amt_to" />
+
+    <ImageView
+        android:id="@+id/img_swap"
+        style="@style/IconsStyle"
+        android:contentDescription="@string/menu"
+        android:src="@drawable/ic_swap"
+        app:layout_constraintBottom_toBottomOf="@id/spinner_from"
+        app:layout_constraintEnd_toStartOf="@id/spinner_to"
+        app:layout_constraintStart_toEndOf="@id/spinner_from"
+        app:layout_constraintTop_toTopOf="@id/spinner_from"
+        app:tint="@android:color/darker_gray" />
+
+    <Spinner
+        android:id="@+id/spinner_to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_big"
+        android:background="@drawable/bg_spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_amt_to" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_convert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_big"
+        android:backgroundTint="@color/colorAccent"
+        android:fontFamily="@font/segoe_ui"
+        android:paddingVertical="@dimen/margin_small"
+        android:text="@string/convert"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/medium_text_size"
+        app:layout_constraintTop_toBottomOf="@id/spinner_from" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
