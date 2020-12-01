@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.dara.currencyconverter"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -25,6 +25,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField('String', "FixerApiKey", CurrencyConverter_FixerApiKey)
         }
+    }
+
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 
@@ -56,5 +64,7 @@ dependencies {
 
     //Okhttp logging
     implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+
+    implementation "androidx.fragment:fragment-ktx:1.2.5"
 
 }

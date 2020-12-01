@@ -82,10 +82,12 @@
 
     <Spinner
         android:id="@+id/spinner_from"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        tools:listitem="@layout/list_item_currency"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_big"
         android:background="@drawable/bg_spinner"
+        app:layout_constraintEnd_toStartOf="@id/img_swap"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_amt_to" />
 
@@ -94,6 +96,7 @@
         style="@style/IconsStyle"
         android:contentDescription="@string/menu"
         android:src="@drawable/ic_swap"
+        android:layout_marginHorizontal="@dimen/margin_big"
         app:layout_constraintBottom_toBottomOf="@id/spinner_from"
         app:layout_constraintEnd_toStartOf="@id/spinner_to"
         app:layout_constraintStart_toEndOf="@id/spinner_from"
@@ -102,9 +105,10 @@
 
     <Spinner
         android:id="@+id/spinner_to"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_big"
+        app:layout_constraintStart_toEndOf="@id/img_swap"
         android:background="@drawable/bg_spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_amt_to" />
