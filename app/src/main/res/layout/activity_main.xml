@@ -5,25 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    android:paddingHorizontal="@dimen/margin_default"
-    android:paddingVertical="@dimen/margin_big"
     tools:context=".MainActivity">
+
+    <include
+        android:id="@+id/loading_indicator"
+        layout="@layout/layout_progress_bar"
+        android:visibility="gone" />
 
     <ImageView
         android:id="@+id/img_menu"
         style="@style/IconsStyle"
+        android:layout_marginVertical="@dimen/margin_big"
+        android:layout_marginStart="@dimen/margin_default"
         android:contentDescription="@string/menu"
         android:src="@drawable/ic_menu"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textView"
         style="@style/TextStyle"
+        android:layout_marginEnd="@dimen/margin_default"
         android:text="@string/sign_up"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/img_menu" />
 
     <TextView
         android:id="@+id/tv_currency_converter"
@@ -33,7 +40,7 @@
         android:textColor="@color/colorBlueText"
         android:textSize="@dimen/large_text_size"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/img_menu"
         app:layout_constraintTop_toBottomOf="@id/img_menu" />
 
     <ImageView
@@ -50,8 +57,8 @@
         android:id="@+id/edit_amt_from"
         style="@style/EditTextStyle"
         android:layout_marginTop="@dimen/margin_large"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/tv_currency_converter"
         app:layout_constraintTop_toBottomOf="@id/tv_currency_converter" />
 
     <TextView
@@ -83,20 +90,20 @@
     <Spinner
         android:id="@+id/spinner_from"
         android:layout_width="0dp"
-        tools:listitem="@layout/list_item_currency"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_big"
         android:background="@drawable/bg_spinner"
         app:layout_constraintEnd_toStartOf="@id/img_swap"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_amt_to" />
+        app:layout_constraintStart_toStartOf="@+id/edit_amt_to"
+        app:layout_constraintTop_toBottomOf="@id/edit_amt_to"
+        tools:listitem="@layout/list_item_currency" />
 
     <ImageView
         android:id="@+id/img_swap"
         style="@style/IconsStyle"
+        android:layout_marginHorizontal="@dimen/margin_big"
         android:contentDescription="@string/menu"
         android:src="@drawable/ic_swap"
-        android:layout_marginHorizontal="@dimen/margin_big"
         app:layout_constraintBottom_toBottomOf="@id/spinner_from"
         app:layout_constraintEnd_toStartOf="@id/spinner_to"
         app:layout_constraintStart_toEndOf="@id/spinner_from"
@@ -108,15 +115,16 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_big"
-        app:layout_constraintStart_toEndOf="@id/img_swap"
         android:background="@drawable/bg_spinner"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/edit_amt_to"
+        app:layout_constraintStart_toEndOf="@id/img_swap"
         app:layout_constraintTop_toBottomOf="@id/edit_amt_to" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_convert"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_default"
         android:layout_marginTop="@dimen/margin_big"
         android:backgroundTint="@color/colorAccent"
         android:fontFamily="@font/segoe_ui"

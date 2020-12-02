@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getRates() {
+        loading_indicator.visibility = View.VISIBLE
         viewModel.rates.observe(this, {
             if (it != null) {
                 // Create a list of [Rate] objects from the response
@@ -56,6 +57,7 @@ class MainActivity : AppCompatActivity() {
                     val rate = Rate(k, v)
                     rates.add(rate)
                 }
+                loading_indicator.visibility = View.GONE
 
                 targetCurrency = rates[0].currency
 
