@@ -4,5 +4,5 @@ class Repository {
 
     private val service = FixerClient.getService()
 
-    suspend fun getCurrencies() = service.getCurrencies()
+    suspend fun getRates() = service.getRates()
 }

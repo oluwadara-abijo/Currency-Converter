@@ -4,7 +4,7 @@ import retrofit2.http.GET
 
 interface FixerService {
 
-    @GET("symbols")
-    suspend fun getCurrencies(): SymbolsResponse
+    @GET("latest")
+    suspend fun getRates(): RatesResponse
 
 }

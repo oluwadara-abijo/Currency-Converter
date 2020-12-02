@@ -10,9 +10,9 @@ class MainViewModel : ViewModel() {
 
     private val repository = Repository()
 
-    val currencies: LiveData<SymbolsResponse?> = liveData(Dispatchers.IO) {
+    val rates: LiveData<RatesResponse?> = liveData(Dispatchers.IO) {
         try {
-            val result = repository.getCurrencies()
+            val result = repository.getRates()
             emit(result)
         } catch (e : CancellationException) {
             emit(null)

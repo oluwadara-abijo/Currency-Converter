@@ -6,23 +6,23 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 
-class CurrencyAdapter(private val currencies: List<String>) :
+class CurrencyAdapter(private val rates: List<Rate>) :
     BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val inflater: LayoutInflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.list_item_currency, parent, false)
         val textViewBankName = view.findViewById<TextView>(R.id.tv_currency)
-        textViewBankName.text = currencies[position]
+        textViewBankName.text = rates[position].currency
         return view
     }
 
     override fun getCount(): Int {
-        return currencies.size
+        return rates.size
     }
 
     override fun getItem(position: Int): String {
-        return currencies[position]
+        return rates[position].currency
     }
 
     override fun getItemId(position: Int): Long {
