@@ -1,6 +1,5 @@
 package com.dara.currencyconverter
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,7 +7,15 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.collections.ArrayList
+
 
 class MainActivity : AppCompatActivity() {
     private val viewModel by viewModels<MainViewModel>()
@@ -19,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var baseAmountWatcher: TextWatcher
     private lateinit var targetAmountWatcher: TextWatcher
     private var isReversed = false
+    private lateinit var nairaRates: ArrayList<Float>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,8 +49,10 @@ class MainActivity : AppCompatActivity() {
 
         spinner_from.isEnabled = false
         rates = arrayListOf()
+        nairaRates = arrayListOf()
 
         getRates()
+        setGraphData()
         observeAmountInput()
         btn_convert.setOnClickListener { convert() }
 
@@ -57,7 +67,6 @@ class MainActivity : AppCompatActivity() {
                     val rate = Rate(k, v)
                     rates.add(rate)
                 }
-                loading_indicator.visibility = View.GONE
 
                 targetCurrency = rates[0].currency
 
@@ -74,6 +83,7 @@ class MainActivity : AppCompatActivity() {
                     onItemSelectedListener = targetCurrencyListener
                     tv_currency_to.text = adapter.getItem(0) as String
                 }
+                loading_indicator.visibility = View.GONE
             }
         })
     }
@@ -127,6 +137,60 @@ class MainActivity : AppCompatActivity() {
             }
         }
         edit_amt_to.addTextChangedListener(targetAmountWatcher)
+    }
+
+    private fun setGraphData() {
+        val values = ArrayList<Entry>()
+        for (x in 1..7) {
+            for (rate in nairaRates) {
+                values.add(Entry(x.toFloat(), rate))
+            }
+        }
+
+        val e1 = Entry(0f, 452.09f)
+        val e2 = Entry(1f, 450.56f)
+        val e3 = Entry(2f, 453.96f)
+        val e4 = Entry(3f, 454.10f)
+        val e5 = Entry(4f, 454.17f)
+        val e6 = Entry(5f, 455.20f)
+        val e7 = Entry(6f, 455.23f)
+        values.addAll(listOf(e1, e2, e3, e4, e5, e6, e7))
+
+        // create a data set and give it a type
+        val dataSet = LineDataSet(values, "")
+        dataSet.apply {
+            mode = LineDataSet.Mode.CUBIC_BEZIER
+            setDrawFilled(true)
+            color = R.color.colorGraph
+            fillColor = R.color.colorGraph
+            highLightColor = R.color.colorGraph
+        }
+
+        // Create a data object with the data sets
+        val data = LineData(dataSet)
+
+        // Customize chart
+        graph.apply {
+            xAxis.apply {
+                position = XAxis.XAxisPosition.BOTTOM
+                val labels = listOf("22 Nov", "23 Nov", "24 Nov", "25 Nov", "26 Nov", "27 Nov", "28 Nov")
+                valueFormatter = IndexAxisValueFormatter(labels)
+            }
+            axisLeft.apply {
+                setDrawGridLines(false)
+                setDrawLabels(false)
+                axisLineColor = android.R.color.transparent
+            }
+            axisRight.apply {
+                setDrawGridLines(false)
+                setDrawLabels(false)
+                axisLineColor = android.R.color.transparent
+            }
+        }
+
+        // Set data
+        graph.data = data
+
     }
 
 }
