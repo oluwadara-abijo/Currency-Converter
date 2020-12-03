@@ -9,4 +9,5 @@
     <string name="exchange_rate"><u>Mid-market exchange rate at 13:38 UTC</u></string>
     <string name="past_30_days">Past 30 days</string>
     <string name="past_90_days">Past 90 days</string>
+    <string name="internet_error">Check your internet connection</string>
 </resources>

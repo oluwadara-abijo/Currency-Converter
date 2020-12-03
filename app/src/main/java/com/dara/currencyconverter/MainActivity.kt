@@ -13,12 +13,14 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
     private val viewModel by viewModels<MainViewModel>()
+    private lateinit var networkUtils: NetworkUtils
     private lateinit var rates: ArrayList<Rate>
     private lateinit var amount: String
     private lateinit var targetCurrency: String
@@ -50,6 +52,7 @@ class MainActivity : AppCompatActivity() {
         spinner_from.isEnabled = false
         rates = arrayListOf()
         nairaRates = arrayListOf()
+        networkUtils = NetworkUtils(this, loading_indicator)
 
         getRates()
         setGraphData()
@@ -59,33 +62,39 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getRates() {
-        loading_indicator.visibility = View.VISIBLE
-        viewModel.rates.observe(this, {
-            if (it != null) {
-                // Create a list of [Rate] objects from the response
-                it.rates.forEach { (k, v) ->
-                    val rate = Rate(k, v)
-                    rates.add(rate)
-                }
+        // Check for network availability
+        if (networkUtils.isNetworkAvailable()) {
+            networkUtils.showLoading()
+            viewModel.rates.observe(this, {
+                if (it != null) {
+                    // Create a list of [Rate] objects from the response
+                    it.rates.forEach { (k, v) ->
+                        val rate = Rate(k, v)
+                        rates.add(rate)
+                    }
 
-                targetCurrency = rates[0].currency
+                    targetCurrency = rates[0].currency
 
-                // Setup spinners
-                val currencyAdapter = CurrencyAdapter(rates)
-                spinner_from.apply {
-                    adapter = currencyAdapter
-                    setSelection(46)
-                    tv_currency_from.text = adapter.getItem(46) as String
-                }
+                    // Setup spinners
+                    val currencyAdapter = CurrencyAdapter(rates)
+                    spinner_from.apply {
+                        adapter = currencyAdapter
+                        setSelection(46)
+                        tv_currency_from.text = adapter.getItem(46) as String
+                    }
 
-                spinner_to.apply {
-                    adapter = currencyAdapter
-                    onItemSelectedListener = targetCurrencyListener
-                    tv_currency_to.text = adapter.getItem(0) as String
+                    spinner_to.apply {
+                        adapter = currencyAdapter
+                        onItemSelectedListener = targetCurrencyListener
+                        tv_currency_to.text = adapter.getItem(0) as String
+                    }
+                    networkUtils.hideLoading()
                 }
-                loading_indicator.visibility = View.GONE
-            }
-        })
+            })
+        } else {
+            Snackbar.make(btn_convert, getString(R.string.internet_error), Snackbar.LENGTH_SHORT)
+                .show()
+        }
     }
 
     private fun convert() {
@@ -172,7 +181,8 @@ class MainActivity : AppCompatActivity() {
         graph.apply {
             xAxis.apply {
                 position = XAxis.XAxisPosition.BOTTOM
-                val labels = listOf("22 Nov", "23 Nov", "24 Nov", "25 Nov", "26 Nov", "27 Nov", "28 Nov")
+                val labels =
+                    listOf("22 Nov", "23 Nov", "24 Nov", "25 Nov", "26 Nov", "27 Nov", "28 Nov")
                 valueFormatter = IndexAxisValueFormatter(labels)
             }
 
