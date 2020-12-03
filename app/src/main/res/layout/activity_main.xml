@@ -76,7 +76,7 @@
             android:id="@+id/tv_currency_from"
             style="@style/TextStyle"
             android:layout_marginHorizontal="16dp"
-            android:textColor="@color/colorFaintGrey"
+            android:textColor="@android:color/darker_gray"
             app:layout_constraintBottom_toBottomOf="@id/edit_amt_from"
             app:layout_constraintEnd_toEndOf="@id/edit_amt_from"
             app:layout_constraintTop_toTopOf="@id/edit_amt_from" />
@@ -95,7 +95,7 @@
             android:id="@+id/tv_currency_to"
             style="@style/TextStyle"
             android:layout_marginHorizontal="16dp"
-            android:textColor="@color/colorFaintGrey"
+            android:textColor="@android:color/darker_gray"
             app:layout_constraintBottom_toBottomOf="@id/edit_amt_to"
             app:layout_constraintEnd_toEndOf="@id/edit_amt_to"
             app:layout_constraintTop_toTopOf="@id/edit_amt_to" />
@@ -140,7 +140,7 @@
             android:layout_marginHorizontal="@dimen/margin_default"
             android:layout_marginTop="@dimen/margin_big"
             android:backgroundTint="@color/colorAccent"
-            android:fontFamily="@font/segoe_ui"
+            android:fontFamily="@font/br_firma_regular"
             android:paddingVertical="@dimen/margin_default"
             android:text="@string/convert"
             android:textAllCaps="false"
@@ -178,6 +178,7 @@
             <RadioButton
                 android:id="@+id/radio_thirty_days"
                 style="@style/RadioButtonStyle"
+                android:checked="true"
                 android:text="@string/past_30_days" />
 
             <RadioButton
@@ -191,6 +192,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginHorizontal="@dimen/margin_default"
+            android:elevation="@dimen/margin_default"
             app:layout_constraintTop_toBottomOf="@id/radio_group_period" />
 
         <TextView

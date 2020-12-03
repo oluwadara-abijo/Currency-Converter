@@ -5,6 +5,5 @@
     <color name="colorAccent">#00D998</color>
     <color name="colorBlueText">#0075FF</color>
     <color name="colorGrey">#FAFAFA</color>
-    <color name="colorFaintGrey">#DDDDDD</color>
-    <color name="colorGraph">#93D6FF</color>
+    <color name="colorGraph">#2703A9F4</color>
 </resources>

@@ -147,6 +147,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // Create data entries using EUR to NGN rates
         val e1 = Entry(0f, 452.09f)
         val e2 = Entry(1f, 450.56f)
         val e3 = Entry(2f, 453.96f)
@@ -156,14 +157,12 @@ class MainActivity : AppCompatActivity() {
         val e7 = Entry(6f, 455.23f)
         values.addAll(listOf(e1, e2, e3, e4, e5, e6, e7))
 
-        // create a data set and give it a type
+        // Create a data set and give it a type
         val dataSet = LineDataSet(values, "")
         dataSet.apply {
             mode = LineDataSet.Mode.CUBIC_BEZIER
             setDrawFilled(true)
             color = R.color.colorGraph
-            fillColor = R.color.colorGraph
-            highLightColor = R.color.colorGraph
         }
 
         // Create a data object with the data sets
@@ -176,11 +175,13 @@ class MainActivity : AppCompatActivity() {
                 val labels = listOf("22 Nov", "23 Nov", "24 Nov", "25 Nov", "26 Nov", "27 Nov", "28 Nov")
                 valueFormatter = IndexAxisValueFormatter(labels)
             }
+
             axisLeft.apply {
                 setDrawGridLines(false)
                 setDrawLabels(false)
                 axisLineColor = android.R.color.transparent
             }
+
             axisRight.apply {
                 setDrawGridLines(false)
                 setDrawLabels(false)

@@ -12,7 +12,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/bg_edit_text</item>
         <item name="android:inputType">numberDecimal</item>
-        <item name="fontFamily">@font/segoe_ui</item>
+        <item name="fontFamily">@font/br_firma_regular</item>
         <item name="android:paddingStart">16dp</item>
         <item name="android:paddingEnd">16dp</item>
         <item name="android:textSize">18sp</item>
@@ -23,7 +23,7 @@
     <style name="TextStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">@font/segoe_ui</item>
+        <item name="android:fontFamily">@font/br_firma_regular</item>
         <item name="android:textSize">@dimen/medium_text_size</item>
     </style>
 
@@ -38,10 +38,8 @@
         <item name="android:layout_margin">@dimen/margin_big</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:button">@drawable/ic_dot</item>
-        <item name="android:buttonTint">@color/colorAccent</item>
-        <item name="android:textColor">@android:color/darker_gray</item>
-        <item name="android:textColorHighlight">@android:color/white</item>
+        <item name="android:button">@drawable/radio_button</item>
+        <item name="android:textColor">@color/radio_button_text</item>
         <item name="android:padding">@dimen/margin_default</item>
         <item name="android:textAppearance">@style/TextStyle</item>
     </style>
