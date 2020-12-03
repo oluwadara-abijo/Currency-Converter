@@ -67,4 +67,7 @@ dependencies {
 
     implementation "androidx.fragment:fragment-ktx:1.2.5"
 
+    // Graph library
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
 }

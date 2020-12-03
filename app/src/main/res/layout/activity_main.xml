@@ -186,13 +186,11 @@
                 android:text="@string/past_90_days" />
         </RadioGroup>
 
-        <LinearLayout
+        <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/graph"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_default"
-            android:background="@color/colorAccent"
-            android:orientation="vertical"
             app:layout_constraintTop_toBottomOf="@id/radio_group_period" />
 
         <TextView
